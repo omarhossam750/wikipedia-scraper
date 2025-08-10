@@ -189,6 +189,6 @@ def run():
 
 if __name__ == '__main__':
 	run()
-	# Add the function here! 
+	# Add the functions below! 
 	save_to_json()
-	save_to_txt()
+

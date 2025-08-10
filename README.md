@@ -1,11 +1,11 @@
-# Wikipedia Scraper Python
+# Wikipedia Scraper Python :snake:
 
 This is a python script that scraps data from Wikipedia Main page and save it as json, txt, md and html file formats.
 
 This project is built using:
 
 1. Python
-2. BeautifulSoap4 Module
+2. BeautifulSoup4 Module
 3. Requests Module
 4. Json Module
 
@@ -15,11 +15,11 @@ Open the terminal in your environment (python venv) or global if you installed p
 
 ```bash
 $ pip install requests
-$ pip install beautifulsoap4 
+$ pip install beautifulsoup4 
 ```
 Now the project will work, no more installation!
 
-### How to use it
+## How to use it
 
 Open `script.py` file and go to the last line which contains:
 
@@ -39,6 +39,6 @@ and after `run()` in the next line under it (notice the indetation if you're not
 
 that's it now you know how to use this script!
 
-#### License
+### License
 
 This project is under [MIT license](https://github.com/omarhossam750/wikipedia-scraper/blob/main/LICENSE)
