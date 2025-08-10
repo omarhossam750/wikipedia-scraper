@@ -17,6 +17,9 @@ Open the terminal in your environment (python venv) or global if you installed p
 $ pip install requests
 $ pip install beautifulsoup4 
 ```
+
+And in the project strucutre **create a folder named "storage"**
+
 Now the project will work, no more installation!
 
 ## How to use it
@@ -37,8 +40,9 @@ and after `run()` in the next line under it (notice the indetation if you're not
 	save_to_html() # this function has the same minor issue we will solve it soon
 ``` 
 
-that's it now you know how to use this script!
+that's it now you know how to use this script, if you find any issue don't be shy to tell us in issues tab!
 
 ### License
 
 This project is under [MIT license](https://github.com/omarhossam750/wikipedia-scraper/blob/main/LICENSE)
+
