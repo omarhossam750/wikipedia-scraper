@@ -13,10 +13,20 @@ data = {
 	"recent_deaths": [], 
 	"on_this_day": [] 
 }
+links = {
+	"ongoing": [],
+	"recent_deaths": []
+}
 
 def save_to_json():
 	try:
 		with open("./storage/data.json", "w", encoding='utf-8') as file:
+			
+			for i, link in enumerate(links["ongoing"]):
+				data["ongoing"][i] = data["ongoing"][i] + f" [ {link} ]"
+			for i, link in enumerate(links["recent_deaths"]):
+				data["recent_deaths"][i] = data["recent_deaths"][i] + f" [ {link} ]"
+			
 			json.dump(data, file, indent=4, ensure_ascii=False)
 		print("Data saved in \"storage/data.json\"!")
 	except:
@@ -39,19 +49,23 @@ def save_to_txt():
 					file.write("On this day:\n")
 					file.write("------------\n")
 					file.write(values[0] + "\n\n")
-				
 					for j, item in enumerate(values[1: len(values)]): 
 						file.write(f"{j + 1}. {item}\n")
 					file.write("\n")
 					
 				else:
 					for j, item in enumerate(values): 
-						file.write(f"{j + 1}. {item}\n")
+						if key == "recent_deaths" or key == "ongoing":
+							file.write(f"{j + 1}. {item} [ {links[key][j]} ]\n")
+						else:
+							file.write(f"{j + 1}. {item}\n")
+						
 					file.write("\n")
 					
 		print("Data saved in \"storage/data.txt\"!")
 	except:
 		print("An error eccoured while saving to txt!")
+
 def save_to_md():
 	try:
 		with open("./storage/data.md", "w", encoding='utf-8') as file:
@@ -72,7 +86,10 @@ def save_to_md():
 					file.write("\n")
 				else:
 					for j, item in enumerate(values): 
-						file.write(f"{j + 1}. {item}\n")
+						if key == "ongoing" or key == "recent_deaths":
+							file.write(f"{j + 1}. [{item}]({links[key][j]})\n")
+						else:
+							file.write(f"{j + 1}. {item}\n")
 					file.write("\n")
 				
 		print("Data saved in \"storage/data.md\"!")
@@ -108,13 +125,17 @@ def save_to_html():
 				else:
 					file.write("  	  <ol>\n")
 					for j, item in enumerate(values): 
-						file.write(f"  	    <li>{item}</li>\n")
+						if key == "ongoing" or key == "recent_deaths":
+							file.write(f"  	    <li><a href='{links[key][j]}' target='_blank'>{item}</a></li>\n")
+						else:
+							file.write(f"  	    <li>{item}</li>\n")
 					file.write("  	  </ol>\n\n")
 			file.write('  	</body>\n')
 			file.write('  </html>\n')
 		print("Data saved in \"storage/data.html\"!")
 	except:
 		print("An error eccoured while saving to html.")
+
 def print_data(): # for console/terminal
 	print("")
 	for key, values in data.items():
@@ -158,7 +179,8 @@ def run():
 					for i, ongoing_item in enumerate(ongoing_items):
 						a = ongoing_item.find("a", recursive=False)
 						link = url + a['href']
-						data["ongoing"].append(a.text.strip() + " [ " + link + " ]")
+						links["ongoing"].append(link)
+						data["ongoing"].append(a.text.strip())
 				
 			# recent deaths
 			if recent_deaths:
@@ -167,7 +189,8 @@ def run():
 				for i, death in enumerate(deaths):
 					a = death.find("a", recursive=False)
 					link = url + a['href']
-					data["recent_deaths"].append(a.text.strip() + " [ " + link + " ]")	
+					links["recent_deaths"].append(link)
+					data["recent_deaths"].append(a.text.strip())	
 		# On this day
 		mpotd = mpright.find("div", id="mp-otd")	
 		if mpotd:
@@ -189,6 +212,5 @@ def run():
 
 if __name__ == '__main__':
 	run()
-	# Add the functions below! 
+	# Add the function below in the same indentaion! 
 	save_to_json()
-
