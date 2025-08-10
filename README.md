@@ -31,13 +31,17 @@ if __name__ == '__main__':
 	run()
 ```
 
-and after `run()` in the next line under it (notice the indetation if you're not familiar with python!) and add one of the following lines or add all of them, each line name is obvious:
+and after `run()` in the next line under it (notice the indetation if you're not familiar with python!) and add one of the following lines, **Don't Add Multiple functions at once** Add one by one so you get the expected file you want without any issues or duplications, each line name is refers to it's job:
 
 ```py
-	save_to_json()
-	save_to_txt()
-	save_to_md() 
+	save_to_json() 
+	# OR 
+	save_to_txt() 
+	# OR 
+	save_to_md()
+	# OR  
 	save_to_html() 
+	# Finish one then run the script then remove it and add the another one if you want
 ``` 
 
 that's it now you know how to use this script, if you find any issue don't be shy to tell us in issues tab!

@@ -65,6 +65,7 @@ def save_to_txt():
 		print("Data saved in \"storage/data.txt\"!")
 	except:
 		print("An error eccoured while saving to txt!")
+
 def save_to_md():
 	try:
 		with open("./storage/data.md", "w", encoding='utf-8') as file:
@@ -85,7 +86,10 @@ def save_to_md():
 					file.write("\n")
 				else:
 					for j, item in enumerate(values): 
-						file.write(f"{j + 1}. {item}\n")
+						if key == "ongoing" or key == "recent_deaths":
+							file.write(f"{j + 1}. [{item}]({links[key][j]})\n")
+						else:
+							file.write(f"{j + 1}. {item}\n")
 					file.write("\n")
 				
 		print("Data saved in \"storage/data.md\"!")
@@ -121,13 +125,17 @@ def save_to_html():
 				else:
 					file.write("  	  <ol>\n")
 					for j, item in enumerate(values): 
-						file.write(f"  	    <li>{item}</li>\n")
+						if key == "ongoing" or key == "recent_deaths":
+							file.write(f"  	    <li><a href='{links[key][j]}' target='_blank'>{item}</a></li>\n")
+						else:
+							file.write(f"  	    <li>{item}</li>\n")
 					file.write("  	  </ol>\n\n")
 			file.write('  	</body>\n')
 			file.write('  </html>\n')
 		print("Data saved in \"storage/data.html\"!")
 	except:
 		print("An error eccoured while saving to html.")
+
 def print_data(): # for console/terminal
 	print("")
 	for key, values in data.items():
@@ -204,6 +212,5 @@ def run():
 
 if __name__ == '__main__':
 	run()
-	# Add the functions below! 
+	# Add the function below in the same indentaion! 
 	save_to_json()
-	save_to_txt()
