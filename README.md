@@ -36,8 +36,8 @@ and after `run()` in the next line under it (notice the indetation if you're not
 ```py
 	save_to_json()
 	save_to_txt()
-	save_to_md() # this function has a minor issue we will solve it soon
-	save_to_html() # this function has the same minor issue we will solve it soon
+	save_to_md() 
+	save_to_html() 
 ``` 
 
 that's it now you know how to use this script, if you find any issue don't be shy to tell us in issues tab!
